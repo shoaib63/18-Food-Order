@@ -6,31 +6,36 @@ export default function Meals(){
 
     const [loadedMeals, setLoadedMeals] = useState([]);
 
-    useEffect(()=>{
+     useEffect(()=>{
         async function fetchMeals() {
             const response = await fetch('http://localhost:3000/meals');
-    
             if(!response.ok){
-                // ...
+                //...
             }
-    
             const meals = await response.json();
             setLoadedMeals(meals);
         }
-    
         fetchMeals();
-    }, []);
-
+     },[])
     
-
-
-
- 
     return(
-        <ul id="meals">
-            {
-                loadedMeals.map(meal=><MealItem key={meal} meal={meal}></MealItem>)
-            }
-        </ul>
+        <ul id="meals">{loadedMeals.map(meal=><MealItem key={meal.id} meal={meal}></MealItem>)}</ul>
     )
 }
+
+
+
+//useEffect(()=>{
+    //     async function fetchMeals() {
+    //         const response = await fetch('http://localhost:3000/meals');
+    
+    //         if(!response.ok){
+    //             // ...
+    //         }
+    
+    //         const meals = await response.json();
+    //         setLoadedMeals(meals);
+    //     }
+    
+    //     fetchMeals();
+    // }, []);
