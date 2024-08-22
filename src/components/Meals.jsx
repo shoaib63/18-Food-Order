@@ -5,23 +5,23 @@ import Error from "./Error";
 
 const requestConfig = {};
 
-export default function Meals(){
+export default function Meals() {
 
-    const {data: loadedMeals, isLoading , error} = useHttp('http://localhost:3000/meals');
+    const { data: loadedMeals, isLoading, error } = useHttp('http://localhost:3000/meals', requestConfig, []);
 
-    if(isLoading){
+    if (isLoading) {
         return <p className="center">Fetching meals...</p>
     }
-    
-    if(error){
+
+    if (error) {
         return <Error title="Faild to fetch meals" message={error} />
     }
 
     // if(!loadedMeals)
     //     return <p>No meals found.</p>
 
-    return(
-        <ul id="meals">{loadedMeals.map(meal=><MealItem key={meal.id} meal={meal}></MealItem>)}</ul>
+    return (
+        <ul id="meals">{loadedMeals.map(meal => <MealItem key={meal.id} meal={meal}></MealItem>)}</ul>
     )
 }
 
